@@ -1,0 +1,48 @@
+//click on the icon and check expected url gets displayed in the new tab
+reference: https://docs.cypress.io/api/commands/stub#More-cystub-examples
+
+add a functions.ts file in support:
+
+import e2eData from '../fixtures/e2eData.json';
+import { E2EData } from './model';
+export const stubWindowOpen = (windowName: string) => {
+  cy.window().then((win) => {
+    cy.stub(win, 'open')
+      .as(windowName)
+      .callsFake((openedUrl) => {
+        cy.log('External link would open:', openedUrl);
+        return null;
+      });
+  });
+};
+
+export const verifyExternalLinkUrl = (
+  windowName: string,
+  urlKeyword: string,
+) => {
+  cy.get(`@${windowName}`)
+    .should('have.been.called')
+    .then((stub) => {
+      const calledUrl = (stub as unknown as Cypress.Agent<sinon.SinonStub>)
+        .firstCall?.args[0];
+      expect(calledUrl, `URL should contain ${urlKeyword}`).to.include(
+        urlKeyword,
+      );
+      cy.log(`✓ Verified URL contains ${urlKeyword}`);
+      cy.log('✓ Link would open in new tab');
+    });
+};
+
+
+
+Homepage.cy.ts file:
+it('should verify icon link opens in new tab with correct URL', () => {
+    stubWindowOpen('it4uNewTabWindow');
+
+    cy.get('[data-test="iT4u-link-icon"]')
+      .should('be.visible')
+      .and('not.be.disabled')
+      .click();
+
+    verifyExternalLinkUrl('it4uNewTabWindow', 'it4u');
+  });
