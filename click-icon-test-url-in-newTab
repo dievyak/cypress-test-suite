@@ -36,6 +36,18 @@ export const verifyExternalLinkUrl = (
 
 
 Homepage.cy.ts file:
+import cookies from '../../../fixtures/cookies.json';
+import {
+  setCookie,
+  stubWindowOpen,
+  verifyExternalLinkUrl,
+} from '../../../support/functions';
+describe('Tests for homepage', () => {
+  const accessToken = cookies.accessToken;
+  before(() => {
+    setCookie(accessToken);
+  });
+
 it('should verify icon link opens in new tab with correct URL', () => {
     stubWindowOpen('it4uNewTabWindow');
 
