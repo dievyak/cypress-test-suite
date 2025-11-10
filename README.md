@@ -8,7 +8,7 @@ Welcome to my curated list of Cypress tests gathered from my own experience in U
 
 ---
 
-## 🧩 Core Cypress Practices
+🧩 Core Cypress Practices
 
 - **Accessibility**: Enhance accessibility testing by integrating custom plugins — e.g., the open-source WICK-A11Y Cypress Accessibility plugin.
 - **Productivity**: Boost productivity with IDE extensions like VS Code Cypress Snippets for faster test writing.
