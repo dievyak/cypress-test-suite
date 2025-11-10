@@ -4,7 +4,7 @@ Welcome to my curated list of cypress tests gathered from my own experience in U
 🔄 Reusable custom commands and fixtures 
 
  
- 🧩 Core Cypress Practices:
+🧩 Core Cypress Practices:
  
 Enhance accessibility testing by integrating custom plugins tailored to your framework — for example, the open-source WICK-A11Y Cypress Accessibility plugin.
 
@@ -32,10 +32,10 @@ Handle confirmation dialogs with cy.on('window:confirm') to assert dialog text a
 
 ✅ Simulate clicking “OK”:
 
-cy.on('window:confirm', (text) => {
+\\\cy.on('window:confirm', (text) => {
 expect(text).to.equal('Are you sure?');
 return true; // Confirms the action
-}); 
+});\\\
 
 ❌ Simulate clicking “Cancel”:
 
