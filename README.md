@@ -13,6 +13,7 @@ Boost productivity with IDE extensions like VS Code Cypress Snippets for faster 
 Leverage Cypress Cloud for advanced capabilities including analytics, test reporting, parallel execution, UI coverage metrics, and AI-powered insights.
 
 🧩 UI Elements Manipulation:
+
 Assert element states using partial class selectors when no unique attributes are available — e.g., [class*="disabled-true"] or [class*="isError-true"].
 
 Traverse DOM hierarchy by locating a child element and accessing its parent via .parent() — e.g., cy.get('#element').parent().
@@ -22,6 +23,7 @@ Interact with off-screen elements by scrolling them into view before performing 
 Validate UI attributes using Cypress’s .should() assertion — e.g., cy.get('#element').should('have.attr', 'data-state', 'off').
 
 🧠 Advanced Cypress Practices:
+
 ⚠️ Alert & Confirmation Handling:
 
 Intercept browser alerts using cy.on('window:alert') to verify alert messages and simulate user interactions.
@@ -49,7 +51,8 @@ cy.get('input[name="email"]').clear({ force: true }).type('test@example.com');
 Use regular expressions in assertions for flexible and reliable text validation — ideal for dynamic content like price ranges:
 expect(invokedNormalizedText).to.match(/Min:\s*\d+\sUSD\s*-\s*Max:\s*\d+\sUSD/);
 
-🏷️ Test Tags and Browser Events
+🏷️ Test Tags and Browser Events:
+
 Organize test suites using Cypress tags to enable targeted execution and filtering:
 // testSuite.spec.js
 describe("Regression Tests", { tags: ["regression"] }, () => {
@@ -59,30 +62,36 @@ describe("Regression Tests", { tags: ["regression"] }, () => {
 });
 
 Simulate browser events with .trigger() to replicate interactions like drag-and-drop or custom input behaviors not natively supported by Cypress:
+
 cy.get('#passwordInput')
   .clear({ force: true })
   .type(phoneNumber)
   .trigger("input")
   .trigger("change");
 
-⚙️ Configuration and Environment Setup
+⚙️ Configuration and Environment Setup:
+
 Customize timeouts to improve test stability and control:
 defaultCommandTimeout: 40000,
 requestTimeout: 20000,
 responseTimeout: 20000
 
 Create multiple config files to support different environments or test states — e.g., cypress.stage.config.js:
+
 npx cypress run --config-file cypress.stage.config.js --headless
 
 Pass environment-specific variables via CLI flags for flexible URL targeting:
+
 --env url=stage
 
 Simulate mobile devices using cy.viewport() for responsive UI testing:
+
 cy.viewport('iphone-16');
 
 Manage environment variables with Cypress.env() to dynamically adapt tests based on context and configuration.
 
-🌐 Environment-Specific URL Configuration
+🌐 Environment-Specific URL Configuration:
+
 Define environment-specific base URLs in a centralized module to streamline testing across multiple environments:
 // environmentURLs.js
 
@@ -106,7 +115,8 @@ const envConfig = URL[environment];
 // Construct environment specific the API URL based on the environment
 const homePageURL = envConfig.homePage;
 
-🧪 Running Cypress Tests via npm Scripts
+🧪 Running Cypress Tests via npm Scripts:
+
 Streamline test execution using custom npm scripts for CLI-based runs. This improves consistency and simplifies command usage across environments:
 // package.json
 "scripts": {
@@ -115,9 +125,8 @@ Streamline test execution using custom npm scripts for CLI-based runs. This impr
 
 Run your tests with:
 npm run cypress:tests:cloud:stage
-This command:
 
-Uses the stage-specific config file
+This command Uses the stage-specific config file
 
 Runs tests in headless mode
 
@@ -125,38 +134,45 @@ Records results to Cypress Cloud
 
 Injects the stage environment URL via CLI flag
 
-🔁 Advanced Command Chaining & Flow Control
+🔁 Advanced Command Chaining & Flow Control:
+
 Master Cypress’s powerful chaining and control mechanisms to write expressive, resilient, and efficient tests:
 
-✅ Assertion Chaining
+✅ Assertion Chaining:
+
 Combine multiple assertions using .should() and .and():
 cy.should('be.visible').and('include.text', 'Success');
 
-⏱️ Time Control
+⏱️ Time Control:
+
 Use cy.clock() and cy.tick() to simulate time-based behavior (e.g., timers, polling):
 cy.clock();
 cy.get('#toast-btn').click();
 cy.tick(3000); // Fast-forward 3 seconds
 cy.get('.toast').should('not.exist');
 
-🔄 Dynamic Value Access
+🔄 Dynamic Value Access:
+
 Chain .then() to extract and assert dynamic values:
 cy.get('#user-email').invoke('text').then((email) => {
   expect(email).to.include('@');
 });
 
-🔁 DOM Iteration
+🔁 DOM Iteration:
+
 Use .each() to loop through elements:
 cy.get('.product-item').each(($el) => {
   cy.wrap($el).should('be.visible');
 });
 
-📦 External Data Wrapping
+📦 External Data Wrapping:
+
 Wrap external objects with cy.wrap():
 const user = { name: 'John' };
 cy.wrap(user).its('name').should('eq', 'John');
 
-📤 Spread Multiple Aliases
+📤 Spread Multiple Aliases:
+
 Use .spread() to handle multiple aliases:
 cy.get('.user-name').as('name');
 cy.get('.user-age').as('age');
@@ -170,26 +186,31 @@ cy.get('@name').then((nameElement) => {
   });
 });
 
-🧩 jQuery Integration
+🧩 jQuery Integration:
+
 Invoke jQuery functions with .invoke():
 cy.get('#element').invoke('val').should('eq', 'expectedValue');
 
-🧬 Nested Property Access
+🧬 Nested Property Access:
+
 Use .its() to access deep properties:
 cy.window().its('navigator.language').should('eq', 'en-US');
 
-🏷️ Aliasing Elements
+🏷️ Aliasing Elements:
+
 Alias elements with .as() for reuse:
 cy.get('#user-profile').as('profile');
 cy.get('@profile').should('be.visible');
 
-🛠️ Utility Libraries
+🛠️ Utility Libraries:
+
 Use Cypress._ (Lodash) for data manipulation:
 const items = [1, 2, 3];
 const doubled = Cypress._.map(items, (i) => i * 2);
 expect(doubled).to.deep.equal([2, 4, 6]);
 
-🔄 Async Logic
+🔄 Async Logic:
+
 Use Cypress.Promise for custom async flows:
 return new Cypress.Promise((resolve) => {
   setTimeout(() => {
@@ -197,7 +218,8 @@ return new Cypress.Promise((resolve) => {
   }, 1000);
 });
 
-🔁 Retry Logic
+🔁 Retry Logic:
+
 Implement manual retry with .then() or use the .retry() plugin:
 cy.get('.status').then(($el) => {
   const checkStatus = () => {
@@ -210,7 +232,8 @@ cy.get('.status').then(($el) => {
   checkStatus();
 });
 
-🌍 Cross-Origin Testing (Cypress 12+)
+🌍 Cross-Origin Testing (Cypress 12+):
+
 Use cy.origin() to interact with external domains:
 cy.visit('http://localhost:3000');
 cy.get('#login-button').click();
@@ -223,44 +246,51 @@ cy.origin('https://auth.example.com', () => {
 
 cy.url().should('include', 'dashboard');
 
-📍 Scoped Actions
+📍 Scoped Actions:
+
 Use .within() to limit DOM traversal to a specific container:
 cy.get('#login-form').within(() => {
   cy.get('input[name="email"]').type('user@example.com');
   cy.get('input[name="password"]').type('123456');
 });
 
-⏳ Smart Waiting
+⏳ Smart Waiting:
+
 Replace fixed waits with network-aware .wait('@alias'):
 cy.intercept('/api/user').as('getUser');
 cy.visit('/dashboard');
 cy.wait('@getUser'); // Waits for the request to complete
 
-🔀 Conditional Logic
+🔀 Conditional Logic:
+
 Use the cypress-if plugin for conditional flows:
 cy.get('button#subscribe')
   .if('exists') // Executes only if the button exists
   .click();
 
-🧪 API Testing Techniques with Cypress
+🧪 API Testing Techniques with Cypress:
 
 Demonstration of advanced API testing strategies integrated with Cypress for robust and maintainable test automation.
 Key Practices
 
-Intercept and wait for API calls
+Intercept and wait for API calls:
+
 Use cy.intercept() to capture network requests and wait for responses before asserting UI elements — avoid using cy.wait(ms) delays.
 cy.intercept('GET', '/api/users').as('getUsers');
 cy.wait('@getUsers').its('response.statusCode').should('eq', 200);
 
-Assert API responses using expect
+Assert API responses using expect:
+
 Validate API response details, such as status codes or payload values:
 expect(response.statusCode).to.eq(200);
 
-Leverage cy.task for Node operations
+Leverage cy.task for Node operations:
+
 Execute backend operations (e.g., storing or fetching values):
 cy.task('getItem', 'bearerUserToken');
 
-Pass headers in API requests
+Pass headers in API requests:
+
 Include authentication tokens or custom headers when needed:
 cy.request({
   method: 'GET',
@@ -268,55 +298,69 @@ cy.request({
   headers: { Authorization: `Bearer ${bearerUserToken}` },
 });
 
-Create reusable custom commands
+Create reusable custom commands:
+
 Define custom Cypress commands for REST API calls and reuse them as templates for consistent testing.
 
-GraphQL testing
+GraphQL testing:
+
 Auto-generate GraphQL commands using schema introspection.
 Write custom commands for GraphQL queries and mutations to streamline testing.
 
-Session and token management
+Session and token management:
+
 Handle user authentication via API (e.g., login, refresh tokens).
 
-Real-time testing with WebSockets
+Real-time testing with WebSockets:
+
 Test live event-based APIs (e.g., SignalR) for real-time data validation.
 
-Schema validation
+Schema validation:
+
 Validate API response schemas using tools like cypress-ajv-schema-validator
  or zod.
 
-Chain API requests
+Chain API requests:
+
 Combine multiple cy.request() calls for end-to-end API workflow testing.
 
-Assertions for headers, cookies, and status codes
+Assertions for headers, cookies, and status codes:
+
 Ensure correct response metadata and authentication behavior.
 
-Pre-test and post-test data management
+Pre-test and post-test data management:
+
 Use APIs to prepare test data or perform cleanup operations.
 
-Combine UI and API tests
+Combine UI and API tests:
+
 Chain UI actions with API verifications for complete coverage.
 
-Simulate API failures
+Simulate API failures:
+
 Mock error responses (e.g., 401 Unauthorized, 500 Server Error) to validate UI error handling.
 
-Improve test readability
+Improve test readability:
+
 Use cy.log() within custom commands for better debugging and traceability.
 
 Extract dynamic values from API responses:
+
 cy.request('/api/users').then((response) => {
   const userId = response.body.data[0].id;
   expect(userId).to.exist;
 });
 
 Load mock data using fixtures:
+
 cy.fixture('user.json').then((user) => {
   expect(user.name).to.equal('Jane');
 });
 
 Use WireMock for API mocking — Simulate complex or controlled API behaviors.
 
-🧪 Debugging & Testing Strategy
+🧪 Debugging & Testing Strategy:
+
 To ensure robust and maintainable Cypress tests, the following practices are employed:
 
 Issue Investigation: Utilize debug(), pause(), and cy.stop() to inspect and isolate test failures.
@@ -343,24 +387,25 @@ Absolutely! Here's a polished and professional version of your **DOM, Forms & Us
 
 ---
 
- 🧭 DOM, Forms & User Interaction
+ 🧭 DOM, Forms & User Interaction:
 
 Best practices for simulating and validating user behavior in Cypress tests:
 
-- **Typing Simulation**: Use `.type({ delay: 100 })` to mimic realistic user input timing.
-- **Download Testing**: Integrate the `cypress-downloadfile` plugin to validate file download functionality.
-- **Visibility vs. Existence**: Differentiate assertions with `should('be.visible')` and `should('exist')` for precise DOM checks.
-- **Forced Interactions**: Apply `.click({ force: true })` to interact with hidden or obstructed elements.
-- **Viewport Navigation**: Use `.scrollTo('top')` or `.scrollTo('bottom')` to control scroll behavior.
-- **Checkbox Handling**: Toggle checkboxes with `.check()` and `.uncheck()` for accurate state testing.
-- **Dropdown Selection**: Use `.select()` to interact with `<select>` elements and validate options.
-- **Dynamic Validation**: Assert form validation messages and behaviors based on user input and conditions.
-- **Date Picker Control**: Combine `cy.clock()` with `.type()` to simulate and control date inputs.
-- **Element Iteration**: Use `.each()` to loop through and interact with multiple elements in a collection.
-- **Form Submission**: Trigger form actions using `cy.submit()` to validate end-to-end workflows.
+- Typing Simulation: Use `.type({ delay: 100 })` to mimic realistic user input timing.
+- Download Testing: Integrate the `cypress-downloadfile` plugin to validate file download functionality.
+- Visibility vs. Existence: Differentiate assertions with `should('be.visible')` and `should('exist')` for precise DOM checks.
+- Forced Interactions: Apply `.click({ force: true })` to interact with hidden or obstructed elements.
+- Viewport Navigation: Use `.scrollTo('top')` or `.scrollTo('bottom')` to control scroll behavior.
+- Checkbox Handling: Toggle checkboxes with `.check()` and `.uncheck()` for accurate state testing.
+- Dropdown Selection: Use `.select()` to interact with `<select>` elements and validate options.
+- Dynamic Validation: Assert form validation messages and behaviors based on user input and conditions.
+- Date Picker Control: Combine `cy.clock()` with `.type()` to simulate and control date inputs.
+- Element Iteration: Use `.each()` to loop through and interact with multiple elements in a collection.
+- Form Submission: Trigger form actions using `cy.submit()` to validate end-to-end workflows.
 
 
-🧠 Debugging & Testing Strategy
+🧠 Debugging & Testing Strategy:
+
 Techniques for building resilient and readable tests:
 
 Issue Investigation: Use debug(), pause(), cy.stop().
@@ -383,11 +428,13 @@ Conditional Execution: Use .skip() or conditional it().
 
 Shared Setup: Use beforeEach() for common preconditions.
 
-🧰 Additional Tools & Plugins
+🧰 Additional Tools & Plugins:
+
 Cypress Real Events: Simulate native browser events.
 Cypress File Upload: Handle file uploads.
 
-🔐 Auth & Session Management Techniques
+🔐 Auth & Session Management Techniques:
+
 Strategies for handling authentication and session state in Cypress tests:
 
 Session Caching: Use cy.session() to persist login sessions across tests for faster execution.
@@ -410,7 +457,8 @@ Secure Credentials: Store sensitive data like usernames and passwords using Cypr
 
 UI Bypass: Skip login screens entirely by issuing direct API calls with cy.request().
 
-☁️ CI, Cloud & Reporting
+☁️ CI, Cloud & Reporting:
+
 Enhance your Cypress test automation with powerful reporting, cloud execution, and CI/CD integration:
 
 Advanced Reporting: Integrate Mochawesome for rich, interactive test reports.
@@ -432,7 +480,8 @@ Environment Configuration: Set baseUrl in your config file or pass via CLI to su
 Dev/Test Automation: Use start-server-and-test for streamlined one-liner commands
 that start your app and run tests.
 
-🧩 Final Touches
+🧩 Final Touches:
+
 Refinements and advanced practices to elevate your Cypress testing workflow:
 
 Localization Testing: Validate internationalization by switching language via query parameters or UI toggles.
@@ -445,10 +494,12 @@ Boilerplate Repository: Maintain a Cypress starter repo with preconfigured patte
 
 Changelog Awareness: Track Cypress updates and breaking changes by maintaining a project changelog and regularly reviewing the official Cypress Changelog.
 
-🔔 Slack Notification Integration (Cypress Cloud)
+🔔 Slack Notification Integration (Cypress Cloud):
+
 Receive real-time Cypress test results directly in Slack with a Cypress Cloud subscription—set it up in just four steps:
 
-1. Create a Cypress Cloud Project
+1. Create a Cypress Cloud Project:
+
 Navigate to the Cypress Dashboard and create a new project.
 
 Add your projectId to cypress.config.js
@@ -458,10 +509,12 @@ module.exports = defineConfig({
   projectId: 'your-project-id',
 });
 
-2. Create a Slack Channel
+2. Create a Slack Channel:
+
 Set up a dedicated Slack channel (e.g., #cypress-tests) to receive notifications.
 
-3. Connect Slack via Cypress Cloud
+3. Connect Slack via Cypress Cloud:
+
 In Cypress Cloud: Go to your project → Settings → Integrations → Add Slack → Select your channel.
 
 4. Done!
