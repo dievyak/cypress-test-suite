@@ -32,9 +32,9 @@ Handle confirmation dialogs with cy.on('window:confirm') to assert dialog text a
 
 ✅ Simulate clicking “OK”:
 
-\\\ cy.on('window:confirm', (text) => {
-\\\ expect(text).to.equal('Are you sure?');
-\\\ return true; // Confirms the action
+cy.on('window:confirm', (text) => {
+expect(text).to.equal('Are you sure?');
+return true; // Confirms the action
 }); 
 
 ❌ Simulate clicking “Cancel”:
