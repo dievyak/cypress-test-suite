@@ -4,14 +4,14 @@ Welcome to my curated list of cypress tests gathered from my own experience in U
 🔄 Reusable custom commands and fixtures 
 
  
- 🧩 Core Cypress Practices
+ 🧩 Core Cypress Practices:
 Enhance accessibility testing by integrating custom plugins tailored to your framework — for example, the open-source WICK-A11Y Cypress Accessibility plugin.
 
 Boost productivity with IDE extensions like VS Code Cypress Snippets for faster test writing and improved developer experience.
 
 Leverage Cypress Cloud for advanced capabilities including analytics, test reporting, parallel execution, UI coverage metrics, and AI-powered insights.
 
-🧩 UI Elements Manipulation
+🧩 UI Elements Manipulation:
 Assert element states using partial class selectors when no unique attributes are available — e.g., [class*="disabled-true"] or [class*="isError-true"].
 
 Traverse DOM hierarchy by locating a child element and accessing its parent via .parent() — e.g., cy.get('#element').parent().
@@ -20,25 +20,29 @@ Interact with off-screen elements by scrolling them into view before performing 
 
 Validate UI attributes using Cypress’s .should() assertion — e.g., cy.get('#element').should('have.attr', 'data-state', 'off').
 
-🧠 Advanced Cypress Practices
-⚠️ Alert & Confirmation Handling
+🧠 Advanced Cypress Practices:
+⚠️ Alert & Confirmation Handling:
+
 Intercept browser alerts using cy.on('window:alert') to verify alert messages and simulate user interactions.
 
 Handle confirmation dialogs with cy.on('window:confirm') to assert dialog text and control the response:
 
 ✅ Simulate clicking “OK”:
+
 cy.on('window:confirm', (text) => {
   expect(text).to.equal('Are you sure?');
   return true; // Confirms the action
 });
 
 ❌ Simulate clicking “Cancel”:
+
 cy.on('window:confirm', (text) => {
   expect(text).to.equal('Are you sure?');
   return false; // Aborts the action
 });
 
-🎯 Input and Assertion Tricks
+🎯 Input and Assertion Tricks:
+
 Force-clear inactive inputs using .clear({ force: true }) when the input field isn't focused or interactable:
 cy.get('input[name="email"]').clear({ force: true }).type('test@example.com');
 Use regular expressions in assertions for flexible and reliable text validation — ideal for dynamic content like price ranges:
