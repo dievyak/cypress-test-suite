@@ -1,7 +1,9 @@
 Welcome to my curated list of cypress tests gathered from my own experience in UI tests. This guide is for QA Automation engineers building scalable and maintainable Cypress frameworks
-🚀 reliable browser-based tests ✅ Automated validation of UI components and functional tests 🔄 Reusable custom commands and fixtures 
+🚀 reliable browser-based tests 
+✅ Automated validation of UI components and functional tests
+🔄 Reusable custom commands and fixtures 
 
- # Core Cypress Practices
+ 
  🧩 Core Cypress Practices
 Enhance accessibility testing by integrating custom plugins tailored to your framework — for example, the open-source WICK-A11Y Cypress Accessibility plugin.
 
@@ -336,7 +338,7 @@ Absolutely! Here's a polished and professional version of your **DOM, Forms & Us
 
 ---
 
-### 🧭 DOM, Forms & User Interaction
+ 🧭 DOM, Forms & User Interaction
 
 Best practices for simulating and validating user behavior in Cypress tests:
 
