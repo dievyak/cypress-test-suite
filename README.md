@@ -1,4 +1,5 @@
-Welcome to my curated list of cypress tests gathered from my own experience in UI tests. This guide is for QA Automation engineers building scalable and maintainable Cypress frameworks
+Welcome to my curated list of cypress tests gathered from my own experience in UI tests.
+ This is for test Automation engineers building scalable and maintainable Cypress frameworks
 🚀 reliable browser-based tests 
 ✅ Automated validation of UI components and functional tests
 🔄 Reusable custom commands and fixtures 
@@ -14,21 +15,29 @@ Leverage Cypress Cloud for advanced capabilities including analytics, test repor
 
 🧩 UI Elements Manipulation:
 
-Assert element states using partial class selectors when no unique attributes are available — e.g., [class*="disabled-true"] or [class*="isError-true"].
+Assert element states using partial class selectors when no unique attributes are available — e.g.,
+ [class*="disabled-true"] or [class*="isError-true"].
 
-Traverse DOM hierarchy by locating a child element and accessing its parent via .parent() — e.g., cy.get('#element').parent().
+Traverse DOM hierarchy by locating a child element and accessing its parent via .parent() — e.g., 
+cy.get('#element').parent().
 
-Interact with off-screen elements by scrolling them into view before performing actions — e.g., cy.get('#element').scrollIntoView().click().
+Interact with off-screen elements by scrolling them into view before performing actions — e.g., 
+cy.get('#element').scrollIntoView().click().
 
-Validate UI attributes using Cypress’s .should() assertion — e.g., cy.get('#element').should('have.attr', 'data-state', 'off').
+Validate UI attributes using Cypress’s .should() assertion — e.g., 
+cy.get('#element').should('have.attr', 'data-state', 'off').
 
 🧠 Advanced Cypress Practices:
 
 ⚠️ Alert & Confirmation Handling:
 
-Intercept browser alerts using cy.on('window:alert') to verify alert messages and simulate user interactions.
+Intercept browser alerts using 
+cy.on('window:alert') 
+to verify alert messages and simulate user interactions.
 
-Handle confirmation dialogs with cy.on('window:confirm') to assert dialog text and control the response:
+Handle confirmation dialogs with 
+cy.on('window:confirm')
+ to assert dialog text and control the response:
 
 ✅ Simulate clicking “OK”:
 
@@ -46,7 +55,9 @@ cy.on('window:confirm', (text) => {
 
 🎯 Input and Assertion Tricks:
 
-Force-clear inactive inputs using .clear({ force: true }) when the input field isn't focused or interactable:
+Force-clear inactive inputs using 
+.clear({ force: true }) 
+when the input field isn't focused or interactable:
 cy.get('input[name="email"]').clear({ force: true }).type('test@example.com');
 Use regular expressions in assertions for flexible and reliable text validation — ideal for dynamic content like price ranges:
 expect(invokedNormalizedText).to.match(/Min:\s*\d+\sUSD\s*-\s*Max:\s*\d+\sUSD/);
