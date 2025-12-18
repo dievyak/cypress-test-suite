@@ -16,15 +16,19 @@ Leverage Cypress Cloud for advanced capabilities including analytics, test repor
 🧩 UI Elements Manipulation:
 
 Assert element states using partial class selectors when no unique attributes are available — e.g.,
+
  [class*="disabled-true"] or [class*="isError-true"].
 
 Traverse DOM hierarchy by locating a child element and accessing its parent via .parent() — e.g., 
+
 cy.get('#element').parent().
 
 Interact with off-screen elements by scrolling them into view before performing actions — e.g., 
+
 cy.get('#element').scrollIntoView().click().
 
 Validate UI attributes using Cypress’s .should() assertion — e.g., 
+
 cy.get('#element').should('have.attr', 'data-state', 'off').
 
 🧠 Advanced Cypress Practices:
