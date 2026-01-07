@@ -536,6 +536,6 @@ In Cypress Cloud: Go to your project → Settings → Integrations → Add Slack
 You’ll now receive automated test run updates directly in Slack 🚀
 
 🙌 Contributions Welcome
-I´m always looking to improve and expand this Cypress testing guide. Feel free to suggest new tips, enhancements, or corrections by opening an issue or submitting a pull request 🤝
+I´m always looking to improve and expand this Cypress testing guide. Feel free to suggest new tips, enhancements, or corrections by opening an issue or submitting a pull request 
 
 Whether it’s a clever testing trick, plugin recommendation, or CI/CD tweak—your input helps the whole community!
